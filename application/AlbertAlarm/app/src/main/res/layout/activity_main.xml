@@ -10,8 +10,13 @@
         android:id="@+id/Example"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text = "example"
-        android:textSize="30dp"/>
+        android:text="example"
+        android:textSize="30dp" />
 
+    <Button
+        android:id="@+id/btnTraffic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="교통 정보 이동하기"/>
 
 </LinearLayout>
