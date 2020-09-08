@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
 
     TextView example;
     Button btnTraffic;
-    private busActivity;
 
 
     @Override
@@ -49,10 +48,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        busEdit = (SwipeLayout)findViewById(R.id.edit_bus);
 
-        busEdit.setShowMode(SwipeLayout.ShowMode.LayDown);
-        busEdit.addDrag(SwipeLayout.DragEdge.Right,busEdit.findViewWithTag("HideTag"));
     }
 
 
