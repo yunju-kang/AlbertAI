@@ -9,17 +9,22 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.daimajia.swipe.SwipeLayout;
 
 
 public class MainActivity extends AppCompatActivity {
 
     TextView example;
     Button btnTraffic;
+    private busActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         example = (TextView)findViewById(R.id.Example);
         btnTraffic = (Button)findViewById(R.id.btnTraffic);
@@ -42,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(busIntent, 0);
             }
         });
+
+
+        busEdit = (SwipeLayout)findViewById(R.id.edit_bus);
+
+        busEdit.setShowMode(SwipeLayout.ShowMode.LayDown);
+        busEdit.addDrag(SwipeLayout.DragEdge.Right,busEdit.findViewWithTag("HideTag"));
     }
 
 
