@@ -13,17 +13,25 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:background="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+ />
 
     <View
         android:id="@+id/bus_list"
         android:layout_width="369dp"
         android:layout_height="562dp"
+        android:layout_marginStart="400dp"
+        android:layout_marginLeft="400dp"
         android:background="@android:color/darker_gray"
-        tools:layout_editor_absoluteX="400dp"
-        tools:layout_editor_absoluteY="18dp" />
+        app:layout_constraintBottom_toTopOf="@+id/bus_main"
+        app:layout_constraintStart_toEndOf="@+id/bus_main"
+        app:layout_constraintStart_toStartOf="@+id/bus_main"
+        app:layout_constraintTop_toBottomOf="@+id/bus_main" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

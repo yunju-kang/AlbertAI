@@ -12,8 +12,15 @@
             motion:touchAnchorId="@id/bus_list"/>
     </Transition>
 
-    <ConstraintSet android:id="@+id/start"></ConstraintSet>
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/bus_list"
+            android:layout_width="369dp"
+            android:layout_height="562dp" />
+    </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/bus_list" />
     </ConstraintSet>
 </MotionScene>
