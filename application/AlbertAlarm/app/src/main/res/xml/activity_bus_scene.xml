@@ -8,9 +8,11 @@
         motion:constraintSetStart="@id/start"
         motion:duration="1000">
         <OnSwipe
+            motion:dragDirection="dragRight"
             motion:touchAnchorSide="right"
             motion:touchAnchorId="@id/bus_list"/>
     </Transition>
+
 
     <ConstraintSet android:id="@+id/start">
         <Constraint
@@ -21,6 +23,7 @@
 
     <ConstraintSet android:id="@+id/end">
         <Constraint
-            android:id="@+id/bus_list" />
+            android:id="@+id/bus_list"
+            motion:layout_constraintEnd_toEndOf="parent"/>
     </ConstraintSet>
 </MotionScene>
