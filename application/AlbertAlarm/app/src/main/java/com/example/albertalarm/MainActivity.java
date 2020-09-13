@@ -14,8 +14,7 @@ import com.daimajia.swipe.SwipeLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView example;
-    Button btnTraffic;
+    Button btnTraffic, btnReminder, btnAlarm;
 
 
     @Override
@@ -24,22 +23,42 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-        example = (TextView)findViewById(R.id.Example);
         btnTraffic = (Button)findViewById(R.id.btnTraffic);
+        btnReminder = (Button)findViewById(R.id.btnReminder);
+        btnAlarm = (Button)findViewById(R.id.btnAlarm);
 
-        example.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this){
+//        example.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this){
+//            @Override
+//            public void onSwipeRight() {
+//                Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
+//
+//            }
+//            public void onSwipeLeft(){
+//                Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+
+        // move Traffic layout
+        btnTraffic.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSwipeRight() {
-                Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
-
-            }
-            public void onSwipeLeft(){
-                Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+            public void onClick(View view) {
+                Intent busIntent = new Intent(view.getContext(), BusActivity.class);
+                startActivityForResult(busIntent, 0);
             }
         });
 
-        btnTraffic.setOnClickListener(new View.OnClickListener() {
+        // move Reminder layout
+        btnReminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent busIntent = new Intent(view.getContext(), BusActivity.class);
+                startActivityForResult(busIntent, 0);
+            }
+        });
+
+        // move Alarm layout
+        btnAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent busIntent = new Intent(view.getContext(), BusActivity.class);

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/Example"
@@ -17,13 +18,24 @@
         android:id="@+id/btnTraffic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="교통 정보 이동하기"/>
+        android:text="Traffic"
+        android:textSize="30dp"
+        android:layout_gravity="center_horizontal"/>
 
-    <include
-        android:id="@+id/activity_bus"
-        layout="@layout/activity_bus"
-        android:layout_width="61dp"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="380dp" />
+    <Button
+        android:id="@+id/btnReminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reminder"
+        android:textSize="30dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/btnAlarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alarm"
+        android:textSize="30dp"
+        android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>
