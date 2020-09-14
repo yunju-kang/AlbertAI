@@ -37,6 +37,13 @@
         app:layout_constraintTop_toTopOf="@id/departure"
          />
 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:>
+
+    </TableLayout>
+
 
     <!--Button
         android:layout_width="wrap_content"
