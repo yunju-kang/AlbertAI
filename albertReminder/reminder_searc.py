@@ -18,13 +18,13 @@ SCOPES = ['https://www.googleapis.com/auth/calendar']
 
 ## 새로운 창에서 로그인하여 인증 정보 얻기
 flow = InstalledAppFlow.from_client_secrets_file(gcreds_filename, SCOPES)
-gcreds = flow.run_local_server(port=0)
+gcreds = flow.run_local_server(port=5500)
 
 
 ##캘린더 일정 가져오기
 from googleapiclient.discovery import build
 
-service = build('calendar', 'v3', credentials = gcreds)
+service = build('calendar', 'v3', credentials=gcreds)
 
 
 
@@ -67,17 +67,8 @@ def info():
     response['output']['name'] = 'napier'
     return json.dumps(response)
 
-
-
-
-'''---------------------------------------------------------------'''
-#캘린더 스케쥴 불러오기
-'''---------------------------------------------------------------'''
-category = []
-page_token = None
-
-while True:
-    calendar_list = service.calendarList().list(pageToken=page_token).execute()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5500, debug=True)
 
 
 '''------------------------------------------------------------------------'''
@@ -85,10 +76,26 @@ while True:
 '''------------------------------------------------------------------------'''
 
 
-@app.route('/reminder/searchSchedule', methods =['POST'])
+@app.route('/reminder/searchSchedule', methods=['POST'])
 def searchSchedule():
     utteranceParameter = getUtteranceParameter()
+
+
+
+    '''---------------------------------------------------------------'''
+    # 캘린더 스케쥴 불러오기
+    '''---------------------------------------------------------------'''
+    category = []
+    page_token = None
+
+    while True:
+        calendar_list = service.calendarList().list(pageToken=page_token).execute()
+
+
 
     ##기본 변수 설정
     response = commonResponse
     response['output']['existYn'] = 'N'
+
+
+
