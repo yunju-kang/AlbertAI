@@ -1,35 +1,17 @@
-# -*-coding:utf-8-*-
+#-*-coding:utf-8-*-
 
 ##라이브러리 호출
+from google.auth.transport.requests import Request
+from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from flask import Flask, request, json
+import datetime
 from datetime import date
-import os
+import os.path
 import urllib
 import dateutil
+import pickle
 
-'''-------------------------------------------------------------------------------'''
-# 구글 API
-'''-------------------------------------------------------------------------------'''
-## 구글 클라우드 콘솔에서 다운받은 OAuth 2.0 클라이언트 파일경로 연결
-gcreds_filename = 'C:/Project/albertReminder/gcredentials.json'
-
-## 사용 권한 지정
-SCOPES = ['https://www.googleapis.com/auth/calendar']
-
-## 새로운 창에서 로그인하여 인증 정보 얻기
-flow = InstalledAppFlow.from_client_secrets_file(gcreds_filename, SCOPES)
-gcreds = flow.run_local_server(port=5500)
-
-##캘린더 일정 가져오기
-from googleapiclient.discovery import build
-
-service = build('calendar', 'v3', credentials=gcreds)
-
-'''----------------------------------------------------------------------------------'''
-# 발화 파라미터 얻기
-'''----------------------------------------------------------------------------------'''
-## 기능 변수 정의
 app = Flask(__name__)
 
 commonResponse = {
@@ -38,13 +20,44 @@ commonResponse = {
     'output': {}
 }
 
+from google_auth_oauthlib.flow import InstalledAppFlow
 
-def getUtteranceParameter():
+gcreds_filename = 'C:/Project/albertReminder/gcredentials.json'
+
+
+## 사용 권한 지정
+SCOPES = ['https://www.googleapis.com/auth/calendar']
+
+
+## 새로운 창에서 로그인하여 인증 정보 얻기(한번만 하면 됨)
+gcreds = None
+
+if os.path.exists('token.pickle'):
+    with open('token.pickle', 'rb') as token:
+        gcreds = pickle.load(token)
+if not gcreds or not gcreds.valid:
+    if gcreds and gcreds.expired and gcreds.refresh_token:
+        gcreds.refresh(Request())
+    else:
+        flow = InstalledAppFlow.from_client_secrets_file(gcreds_filename, SCOPES)
+        ### 포트는 등록한 (localhost:숫자)url의 숫자로 설정
+        gcreds = flow.run_local_server(port=5500)
+    with open('token.pickle', 'wb') as token:
+        pickle.dump(gcreds, token)
+
+
+
+##캘린더 일정 가져오기
+service = build('calendar', 'v3', credentials=gcreds)
+
+
+
+#발화파라미터얻기
+def getUtteranceParameter () :
     data = request.get_json()
     return data['action']['parameters']
 
 
-##연결?
 @app.route('/')
 def index():
     return 'Hello Flask'
@@ -53,30 +66,25 @@ def index():
 @app.route('/info', methods=['POST'])
 def info():
     data = request.get_json()
-    # print(data['test'])
+    print(data['test'])
     response = commonResponse
     response['output']['name'] = 'napier'
     return json.dumps(response)
 
-
-'''------------------------------------------------------------------------'''
-# 특정 일정 검색
-'''------------------------------------------------------------------------'''
-
-
 @app.route('/reminder/searchSchedule', methods=['POST'])
 def searchSchedule():
-    ## 설정
     utteranceParameter = getUtteranceParameter()
-    response = commonResponse
-    category = []
-    allDay = []
-    partTime = []
+    searchName = utteranceParameter['schedule']['value']
+    print(searchName)
 
-    '''---------------------------------------------------------------'''
-    # 캘린더 스케쥴 불러오기
-    '''---------------------------------------------------------------'''
-    ## 카테고리 저장
+    response = commonResponse
+    today = datetime.date.today().isoformat()
+    time_min = today + 'T00:00:00+09:00'
+    time_max = (datetime.date.today()+datetime.timedelta(days=7)).isoformat() + 'T23:59:59+09:00'
+
+
+    #캘린더 리스트 목록뽑기
+    category = []
     page_token = None
     while True:
         calendar_list = service.calendarList().list(pageToken=page_token).execute()
@@ -87,68 +95,82 @@ def searchSchedule():
         if not page_token:
             break
 
+
+    # 전체 일정 불러오기
+    private = []
+    private_all =  []
+    public = []
+    public_all = []
+
     for i in range(len(calendar_list['items'])):
-        calendar_id = calendar_list['items'][i]['id']
-        events_result = service.events().list(calendarId=calendar_id,
-                                              singleEvents=True,
-                                              orderBy='startTime').execute()
-        events = events_result.get('items', [])
+        if calendar_list['items'][i]['summary'] == "개인일정":
+            calendar_id = calendar_list['items'][i]['id']
+            is_single_events = True
+            orderby = 'startTime'
+            events_result = service.events().list(calendarId=calendar_id,
+                                                  timeMin=time_min,
+                                                  timeMax=time_max,
+                                                  singleEvents=is_single_events,
+                                                  orderBy=orderby
+                                                  ).execute()
+            items = events_result.get('items')
+            for j in range(len(items)):
+                time = items[j].get('start')
+                todo = items[j].get('summary')
+                print(dateTime)
+                if 'dateTime' in time:
+                    T = time['dateTime']
+                    Time = T[11:13] + "시 " + T[14:16] + "분"
+                    private.append(Time + "에 " + todo)
+                    private.sort()
+                else:
+                    private_all.append(todo)
 
-        for event in events:
-            start = event['start'].get('dateTime', event['start'].get('date'))
-
-        if start:
-            print(start)
         else:
-            print('no schedule')
+            calendar_id = calendar_list['items'][i]['id']
+            is_single_events = True
+            orderby = 'startTime'
+            events_result = service.events().list(calendarId=calendar_id,
+                                                  timeMin=time_min,
+                                                  timeMax=time_max,
+                                                  singleEvents=is_single_events,
+                                                  orderBy=orderby
+                                                  ).execute()
+            items = events_result.get('items')
+            for j in range(len(items)):
+                time = items[j].get('start')
+                todo = items[j].get('summary')
+                print('dateTime')
+                if 'dateTime' in time:
+                    T = time['dateTime']
+                    Time = T[11:13] + "시 " + T[14:16] + "분"
+                    public.append(Time + "에 " + todo)
+                    public.sort()
+                else:
+                    public_all.append(todo)
 
-    '''-----------------------------------------------------------'''
-    # output 설정
-    '''-----------------------------------------------------------'''
 
-    schedule = utteranceParameter['schedule']['value']
+    print("개인 일정")
+    print(private)
+    print("개인 종일 일정")
+    print(private_all)
+    print("업무 일정")
+    print(public)
+    print("업무 종일 일정")
+    print(public_all)
 
-    response['output']['returnSchedule'] = schedule
+
+
+    response['output']['searchName'] = searchName
     response['output']['existYn'] = 'N'
 
-    if start:
-        response['output']['existYn'] = 'Y'
-        response['output']['returnDate'] = start
-
-    else:
-        ['output']['returnDate'] = '일정 없음'
+    response['output']['privatePart'] = private
+    response['output']['privateAll'] = private_all
+    response['output']['publicPart'] = public
+    response['output']['publicAll'] = public_all
 
     return json.dumps(response)
 
-    '''
-    ## 종일 스케줄인 경우
-    if allDay and not partTime:
-        response['output']['existYn'] = 'Y'
-        response['output']['returnDate'] = start
-
-    ## 시간 설정 스케줄인 경우
-    elif not allDay and partTime:
-        response['output']['existYn'] = 'Y'
-        response['output']['returnDate'] = start
-
-    ## 두 가지가 공존할 경우
-
-    ##스케줄이 없는 경우
-    #else:
-        #response['output']['existYn'] = 'Y'
-        #dayTime = allDay + partTime
-        #response['output']['returnDate'] = dayTime 
-    else:
-        ['output']['returnDate'] = '일정 없음'
-
-    return json.dumps(response)
-
-    '''
-
-
-'''------------------------------------------------------------------'''
-# 포트 연결
-'''------------------------------------------------------------------'''
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
