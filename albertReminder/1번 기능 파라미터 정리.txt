@@ -20,8 +20,7 @@ schedule - SPECIFICSCHEDULE
 백엔드 파라미터:
 existYn - 일정 존재 여부
 searchName - 일정 이름(반환용)
-privatePart - 개인 부분 일정
-privateAll - 개인 종일 일정
-publicPart - 업무 부분 일정
-publicAll - 업무 종일 일정
-returnDate - 일정이 존재하는 날짜+시간/날짜
+privatePart - 개인 부분 일정 ("00월 00일 00시 00분에 0000" 형식)
+privateAll - 개인 종일 일정 ("00월 00일에 0000" 형식)
+publicPart - 업무 부분 일정  ("00월 00일 00시 00분에 0000" 형식)
+publicAll - 업무 종일 일정 ("00월 00일에 0000" 형식)
