@@ -117,14 +117,17 @@ def searchSchedule():
             for j in range(len(items)):
                 time = items[j].get('start')
                 todo = items[j].get('summary')
-                print(dateTime)
                 if 'dateTime' in time:
                     T = time['dateTime']
-                    Time = T[11:13] + "시 " + T[14:16] + "분"
+                    Time = T[5:7] + "월 " + T[8:10] + "일 " +T[11:13] + "시 " + T[14:16] + "분"
                     private.append(Time + "에 " + todo)
                     private.sort()
                 else:
+                    T = time.values()
+                    Time = T[19:21] + "월 " + T[22:24] + "일 "
+                    print(Time)
                     private_all.append(todo)
+
 
         else:
             calendar_id = calendar_list['items'][i]['id']
@@ -140,14 +143,13 @@ def searchSchedule():
             for j in range(len(items)):
                 time = items[j].get('start')
                 todo = items[j].get('summary')
-                print('dateTime')
                 if 'dateTime' in time:
                     T = time['dateTime']
-                    Time = T[11:13] + "시 " + T[14:16] + "분"
+                    Time = T[5:7] + "월 " + T[8:10] + "일 " +T[11:13] + "시 " + T[14:16] + "분"
                     public.append(Time + "에 " + todo)
                     public.sort()
                 else:
-                    public_all.append(todo)
+                    private_all.append(todo)
 
 
     print("개인 일정")
