@@ -20,7 +20,9 @@ commonResponse = {
     'output': {}
 }
 
-from google_auth_oauthlib.flow import InstalledAppFlow
+'''---------------------------------------------------------------------'''
+    # 구글 api 받아오기
+'''---------------------------------------------------------------------'''
 
 gcreds_filename = 'C:/Project/albertReminder/gcredentials.json'
 
@@ -52,6 +54,11 @@ service = build('calendar', 'v3', credentials=gcreds)
 
 
 
+
+'''---------------------------------------------------------------------'''
+    # 파라미터 연결하기
+'''---------------------------------------------------------------------'''
+
 #발화파라미터얻기
 def getUtteranceParameter () :
     data = request.get_json()
@@ -71,6 +78,13 @@ def info():
     response['output']['name'] = 'napier'
     return json.dumps(response)
 
+
+
+'''---------------------------------------------------------------------'''
+    # 일정 찾기 함수
+'''---------------------------------------------------------------------'''
+
+
 @app.route('/reminder/searchSchedule', methods=['POST'])
 def searchSchedule():
     utteranceParameter = getUtteranceParameter()
@@ -79,8 +93,11 @@ def searchSchedule():
 
     response = commonResponse
     today = datetime.date.today().isoformat()
+    tomorrow = (datetime.date.today()+datetime.timedelta(days=1)).isoformat()
+    a_tomorrow = (datetime.date.today()+datetime.timedelta(days=2)).isoformat()
     time_min = today + 'T00:00:00+09:00'
     time_max = (datetime.date.today()+datetime.timedelta(days=7)).isoformat() + 'T23:59:59+09:00'
+
 
 
     #캘린더 리스트 목록뽑기
@@ -96,7 +113,7 @@ def searchSchedule():
             break
 
 
-    # 전체 일정 불러오기
+    #일정 불러오기
     private = []
     private_all =  []
     public = []
@@ -117,17 +134,32 @@ def searchSchedule():
             for j in range(len(items)):
                 time = items[j].get('start')
                 todo = items[j].get('summary')
-                if 'dateTime' in time:
-                    T = time['dateTime']
-                    Time = T[5:7] + "월 " + T[8:10] + "일 " +T[11:13] + "시 " + T[14:16] + "분"
-                    private.append(Time + "에 " + todo)
-                    private.sort()
-                else:
-                    T = time.values()
-                    Time = T[19:21] + "월 " + T[22:24] + "일 "
-                    print(Time)
-                    private_all.append(todo)
+                if todo == searchName:
+                    if 'dateTime' in time:
+                        T = time['dateTime']
+                        if T[8:10] == today[8:10]:
+                            private.append("오늘 " +T[11:13] + "시 " + T[14:16] + "분에 "+ todo)
+                        elif T[8:10] == tomorrow[8:10]:
+                            private.append("내일 "+T[11:13] + "시 " + T[14:16] + "분에 " + todo)
+                        elif T[8:10] == a_tomorrow[8:10]:
+                            private.append("모레 "+T[11:13] + "시 " + T[14:16] + "분에 " + todo)
+                        else:
+                            Time = T[5:7] + "월 " + T[8:10] + "일 " +T[11:13] + "시 " + T[14:16] + "분"
+                            private.append(Time + "에 " + todo)
+                        private.sort()
 
+                    else:
+                        T = str(time.values())
+                        if T[8:10] == today[8:10]:
+                            private_all.append("오늘 " + todo)
+                        elif T[8:10] == tomorrow[8:10]:
+                            private_all.append("내일 " + todo)
+                        elif T[8:10] == a_tomorrow[8:10]:
+                            private_all.append("모레 " + todo)
+                        else:
+                            Time = T[19:21] + "월 " + T[22:24] + "일"
+                            private_all.append(Time + "에 " + todo)
+                            private_all.sort()
 
         else:
             calendar_id = calendar_list['items'][i]['id']
@@ -143,25 +175,35 @@ def searchSchedule():
             for j in range(len(items)):
                 time = items[j].get('start')
                 todo = items[j].get('summary')
-                if 'dateTime' in time:
-                    T = time['dateTime']
-                    Time = T[5:7] + "월 " + T[8:10] + "일 " +T[11:13] + "시 " + T[14:16] + "분"
-                    public.append(Time + "에 " + todo)
-                    public.sort()
-                else:
-                    private_all.append(todo)
+                if todo == searchName:
+                    if 'dateTime' in time:
+                        T = time['dateTime']
+                        if T[8:10] == today[8:10]:
+                            public.append("오늘 "+T[11:13] + "시 " + T[14:16] + "분에 " + todo)
+                        elif T[8:10] == tomorrow[8:10]:
+                            public.append("내일 "+T[11:13] + "시 " + T[14:16] + "분에 " + todo)
+                        elif T[8:10] == a_tomorrow[8:10]:
+                            public.append("모레 "+T[11:13] + "시 " + T[14:16] + "분에 " + todo)
+                        else:
+                            Time = T[5:7] + "월 " + T[8:10] + "일" +T[11:13] + "시 " + T[14:16] + "분"
+                            public.append(Time + "에 " + todo)
+                            public.sort()
+                    else:
+                        T = str(time.values())
+                        if T[8:10] == today[8:10]:
+                            public_all.append("오늘 " + todo)
+                        elif T[8:10] == tomorrow[8:10]:
+                            public_all.append("내일 " + todo)
+                        elif T[8:10] == a_tomorrow[8:10]:
+                            public_all.append("모레에 " + todo)
+                        else:
+                            Time = T[19:21] + "월 " + T[22:24] + "일"
+                            public_all.append(Time + "에 " + todo)
+                            public_all.sort()
 
-
-    print("개인 일정")
-    print(private)
-    print("개인 종일 일정")
-    print(private_all)
-    print("업무 일정")
-    print(public)
-    print("업무 종일 일정")
-    print(public_all)
-
-
+    '''---------------------------------------------------------------------'''
+        # output 출력
+    '''---------------------------------------------------------------------'''
 
     response['output']['searchName'] = searchName
     response['output']['existYn'] = 'N'

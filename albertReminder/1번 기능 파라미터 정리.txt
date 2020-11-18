@@ -1,0 +1,27 @@
+**리마인더 1번 기능
+
+발화 파라미터:
+day - BID_DT_DAY(엔티티 연결)
+ymonth - BID_DT_YMONTH(엔티티 연결)
+mday - BID_DT_MDAY(엔티티 연결)
+
+백엔드 파라미터:
+existYn - 해당 날짜 내용 등록 여부
+belongings - 소지품 목록
+schedule - 일정 목록(업무 일정, 개인 일정 함께)
+returndate - 반환하는 날짜
+
+
+**리마인더 5번 기능
+
+발화 파라미터:
+schedule - SPECIFICSCHEDULE
+
+백엔드 파라미터:
+existYn - 일정 존재 여부
+searchName - 일정 이름(반환용)
+privatePart - 개인 부분 일정
+privateAll - 개인 종일 일정
+publicPart - 업무 부분 일정
+publicAll - 업무 종일 일정
+returnDate - 일정이 존재하는 날짜+시간/날짜
