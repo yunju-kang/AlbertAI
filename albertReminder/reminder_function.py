@@ -18,15 +18,13 @@ commonResponse = {
 
 
 # 구글 클라우드 콘솔에서 다운받은 OAuth 2.0 클라이언트 파일경로
-gcreds_filename = 'c:/Project/gcredentials.json'
+# download credential from google cloud console
+gcreds_filename = 'gcredentials.json'
 
-# 사용 권한 지정
-# https://www.googleapis.com/auth/calendar	               캘린더 읽기/쓰기 권한
-# https://www.googleapis.com/auth/calendar.readonly	       캘린더 읽기 권한
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 
 # 파일에 담긴 인증 정보로 구글 서버에 인증하기
-# 새 창이 열리면서 구글 로그인 및 정보 제공 동의 후 최종 인증이 완료됩니다.
+# get approval using token
 
 gcreds = None
 
@@ -39,7 +37,10 @@ if not gcreds or not gcreds.valid:
     else:
         flow = InstalledAppFlow.from_client_secrets_file(gcreds_filename, SCOPES)
         gcreds = flow.run_local_server(port=0)
-        redirect_uri = 'http://ec2-15-165-243-213.ap-northeast-2.compute.amazonaws.com:5501/'
+
+        #aws에 5501 포트 열기
+        # add aws 5501 port
+        redirect_uri = 'http://(aws_public_dns_address):5501/'
         authorization_url, state = flow.authorization_url(access_type='offline', include_granted_scopes='true')
 
     with open('token.pickle', 'wb') as token:
@@ -50,6 +51,7 @@ service = build('calendar', 'v3', credentials=gcreds)
 
 
 #발화파라미터얻기
+#get utterance parameter
 def getUtteranceParameter () :
     data = request.get_json()
     return data['action']['parameters']
@@ -69,6 +71,7 @@ def info():
     return json.dumps(response)
 
 ##기능 1번 전체 일정 검색
+##function 1. search all schedule by date
 @app.route('/reminder/Answer_AllSchedule', methods=['POST'])
 def Answer_AllSchedule():
     utteranceParameter = getUtteranceParameter()
@@ -124,6 +127,7 @@ def Answer_AllSchedule():
 
 
     #캘린더 리스트 목록뽑기
+    #get list of calendar schedules
     category = []
     page_token = None
     while True:
@@ -137,12 +141,14 @@ def Answer_AllSchedule():
 
 
     #카테고리 3개 다 있는지 확인
+    #check wether all category has list
     if "개인 일정" in category and "업무 일정" in category and "소지품" in category:
         categoryexist = "Y"
     else:
         categoryexist = "N"
 
     # 전체 일정 불러오기(소지품, 스케쥴은 구분)
+    # get schedules, belongings list
     belongings = []
     schedule = []
 
@@ -216,6 +222,7 @@ def Answer_AllSchedule():
 
 
 ##기능2번 업무 일정 검색
+##function 2. search public schedules
 @app.route('/reminder/Answer_BusinessSchedule', methods=['POST'])
 def Answer_BusinessSchedule():
     utteranceParameter = getUtteranceParameter()

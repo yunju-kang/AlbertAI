@@ -20,16 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a6ca5a4-ecc8-4962-b45f-7ec9be7b778c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/albertReminder.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/albertReminder.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1번 기능 파라미터 정리.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcredentials.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/parameter.txt" beforeDir="false" afterPath="$PROJECT_DIR$/parameter.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reminder1.py" beforeDir="false" afterPath="$PROJECT_DIR$/reminder1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reminder_searc.py" beforeDir="false" afterPath="$PROJECT_DIR$/reminder_searc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reminder1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reminder_searc.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,26 +205,5 @@
       <screen x="0" y="0" width="1474" height="864" />
     </state>
     <state x="557" y="282" width="728" height="557" maximized="true" key="dock-window-2/0.0.1474.864@0.0.1474.864" timestamp="1606144111488" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/reminder1.py</url>
-          <line>67</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/reminder1.py</url>
-          <line>119</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/reminder1.py</url>
-          <line>678</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
