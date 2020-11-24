@@ -9,7 +9,7 @@ import datetime
 from datetime import date
 import os.path
 import urllib
-import dateutil
+# import dateutil
 import pickle
 
 app = Flask(__name__)
@@ -24,7 +24,7 @@ commonResponse = {
     # 구글 api 받아오기
 '''---------------------------------------------------------------------'''
 
-gcreds_filename = 'C:/Project/albertReminder/gcredentials.json'
+gcreds_filename = 'gcredential.json'
 
 
 ## 사용 권한 지정
@@ -42,8 +42,9 @@ if not gcreds or not gcreds.valid:
         gcreds.refresh(Request())
     else:
         flow = InstalledAppFlow.from_client_secrets_file(gcreds_filename, SCOPES)
-        ### 포트는 등록한 (localhost:숫자)url의 숫자로 설정
-        gcreds = flow.run_local_server(port=5500)
+        gcreds = flow.run_local_server(port=0)
+        redirect_uri = 'http://ec2-3-34-222-255.ap-northeast-2.compute.amazonaws.com:5501/'
+        redirect_uri, state = flow.authorization_url(access_type='offline', include_granted_scopes = 'true')
     with open('token.pickle', 'wb') as token:
         pickle.dump(gcreds, token)
 
@@ -208,13 +209,15 @@ def searchSchedule():
     response['output']['searchName'] = searchName
     response['output']['existYn'] = 'N'
 
-    response['output']['privatePart'] = private
-    response['output']['privateAll'] = private_all
-    response['output']['publicPart'] = public
-    response['output']['publicAll'] = public_all
+    if private and private_all and public and public_all != None:
+        response['output']['existYn'] = 'Y'
+        response['output']['privatePart'] = private
+        response['output']['privateAll'] = private_all
+        response['output']['publicPart'] = public
+        response['output']['publicAll'] = public_all
 
     return json.dumps(response)
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5500, debug=True)

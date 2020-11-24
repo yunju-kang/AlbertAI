@@ -1,8 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a6ca5a4-ecc8-4962-b45f-7ec9be7b778c" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="8a6ca5a4-ecc8-4962-b45f-7ec9be7b778c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/albertReminder.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/albertReminder.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/1번 기능 파라미터 정리.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gcredentials.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/parameter.txt" beforeDir="false" afterPath="$PROJECT_DIR$/parameter.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reminder1.py" beforeDir="false" afterPath="$PROJECT_DIR$/reminder1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reminder_searc.py" beforeDir="false" afterPath="$PROJECT_DIR$/reminder_searc.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,24 +43,64 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1jucvpNBOP6ha6MUtbvXWmYQPkx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/PycharmProjects/skt/shoppingItem.py" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Programs/Python" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Python.shoppingItem">
+  <component name="RunManager" selected="Python.reminder1">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="albertReminder" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="reminder1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="albertReminder" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/reminder1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="reminder_searc" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="albertReminder" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -77,11 +145,14 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.shoppingItem" />
+        <item itemvalue="Python.reminder1" />
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.reminder_searc" />
+        <item itemvalue="Python.shoppingItem" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -95,18 +166,69 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="757" y="184" key="FileChooserDialogImpl" timestamp="1606118931763">
+      <screen x="0" y="0" width="1474" height="864" />
+    </state>
+    <state x="757" y="184" key="FileChooserDialogImpl/0.0.1474.864@0.0.1474.864" timestamp="1606118931763" />
+    <state width="715" height="205" key="GridCell.Tab.0.bottom" timestamp="1606222494268">
+      <screen x="0" y="0" width="1474" height="864" />
+    </state>
+    <state width="715" height="205" key="GridCell.Tab.0.bottom/0.0.1474.864@0.0.1474.864" timestamp="1606222494268" />
+    <state width="715" height="205" key="GridCell.Tab.0.center" timestamp="1606222494268">
+      <screen x="0" y="0" width="1474" height="864" />
+    </state>
+    <state width="715" height="205" key="GridCell.Tab.0.center/0.0.1474.864@0.0.1474.864" timestamp="1606222494268" />
+    <state width="715" height="205" key="GridCell.Tab.0.left" timestamp="1606222494268">
+      <screen x="0" y="0" width="1474" height="864" />
+    </state>
+    <state width="715" height="205" key="GridCell.Tab.0.left/0.0.1474.864@0.0.1474.864" timestamp="1606222494268" />
+    <state width="715" height="205" key="GridCell.Tab.0.right" timestamp="1606222494268">
+      <screen x="0" y="0" width="1474" height="864" />
+    </state>
+    <state width="715" height="205" key="GridCell.Tab.0.right/0.0.1474.864@0.0.1474.864" timestamp="1606222494268" />
+    <state x="246" y="76" key="SettingsEditor" timestamp="1606120392310">
+      <screen x="0" y="0" width="1474" height="864" />
+    </state>
+    <state x="246" y="76" key="SettingsEditor/0.0.1474.864@0.0.1474.864" timestamp="1606120392310" />
+    <state x="-6" y="0" width="750" height="870" key="dock-window-1" timestamp="1606215078030">
+      <screen x="0" y="0" width="1474" height="864" />
+    </state>
+    <state x="-6" y="0" width="750" height="870" key="dock-window-1/0.0.1474.864@0.0.1474.864" timestamp="1606215078030" />
+    <state x="557" y="282" width="728" height="557" maximized="true" key="dock-window-2" timestamp="1606144111488">
+      <screen x="0" y="0" width="1474" height="864" />
+    </state>
+    <state x="557" y="282" width="728" height="557" maximized="true" key="dock-window-2/0.0.1474.864@0.0.1474.864" timestamp="1606144111488" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/reminder1.py</url>
-          <line>52</line>
+          <line>67</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/reminder1.py</url>
-          <line>105</line>
+          <line>119</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/reminder1.py</url>
+          <line>678</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
