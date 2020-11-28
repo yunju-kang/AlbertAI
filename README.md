@@ -16,7 +16,7 @@ Alarm service for schedules registered on google calendar
 
 
 실행 방법
-=> putty 실행
--> main.py를 실행하여 구글 캘린더 로그인 토큰 저장
--> reminder1.py를 실행
--> 누구 플레이에서 '알리마' 서비스 플레이
+1. putty 실행
+2. main.py를 실행하여 구글 캘린더 로그인 토큰 저장
+3. reminder1.py를 실행
+4. 누구 플레이에서 '알리마' 서비스 플레이
