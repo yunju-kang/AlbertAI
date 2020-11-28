@@ -12,3 +12,11 @@ Alarm service for schedules registered on google calendar
 3. 특정 날짜의 개인 일정 검색
 4. 특정 날짜의 소지품 검색
 5. 특정 일정이 등록된 날짜 검색
+
+
+
+실행 방법
+=> putty 실행
+-> main.py를 실행하여 구글 캘린더 로그인 토큰 저장
+-> reminder1.py를 실행
+-> 누구 플레이에서 '알리마' 서비스 플레이
